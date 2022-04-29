@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Partidos</title>
+	
+	<style>
+	table, th, td {
+		border:1px solid black;
+	}
+	</style>
+	
+</head>
+
+<body>
+<h1>Cadastro de Partidos</h1>
+	<a href="/">Menu</a>
+	<br>
+	<br>
+
+	<form th:action="@{/partidos}" method="POST">
+		
+		<label>Nome:</label><input type="text" name="nome"/>
+		<label>Sigla:</label><input type="text" name="sigla"/>
+		<label>Ideologia:</label><input type="text" name="ideologia"/>
+		<input type="submit" value="Salvar"/>
+			
+	</form>
+	<br>
+	<br>
+	
+	
+	<table>	
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Sigla</th>
+			<th>Ideologia</th>
+			<th>Detalhes</th>
+		</tr>
+		
+		<tr th:each="partidos : ${partidos}" >
+			<td th:text="${partidos.id}"></td>
+			<td th:text="${partidos.nome}"></td>
+			<td th:text="${partidos.sigla}"></td>
+			<td th:text="${partidos.ideologia}"></td> 
+			<td> <a th:href="@{'/partidos/' + ${partidos.id} + '/associados/'}"> Detalhes</a></td>
+		</tr>	
+	</table>
+</body>
+
+</html>

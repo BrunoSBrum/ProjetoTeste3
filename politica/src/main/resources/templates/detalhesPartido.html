@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Detalhes Partido</title>
+	<style>
+		table,
+		th,
+		td{
+			border:1px solid black;
+			}
+	</style>
+</head>
+
+<body>
+	<h1>Detalhes Partido</h1>
+	<a href="/">Menu</a>
+	<a href="/partidos">Partidos</a>
+	<br>
+	<br>
+	<b>Id Partido:</b> <span th:text="${partidos.id}"></span>
+	<br><b>Nome:</b> <span th:text="${partidos.nome}"></span>
+	<br><b>Sigla:</b> <span th:text="${partidos.sigla}"></span>
+	<br><b>Ideologia:</b> <span th:text="${partidos.ideologia}"></span>
+	<br>
+	<br>
+	Associados:
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Cargo</th>
+			<th>Sexo</th>
+			<th>Partido</th>
+		</tr>
+		
+		<tr th:each="associados : ${partidos.associados}">
+			<td th:text="${associados.idAssociado}"></td>
+			<td th:text="${associados.nome}"></td>
+			<td th:text="${associados.cargo}"></td>
+			<td th:text="${associados.sexo}"></td> 
+			<td th:text="${associados.partidos?.nome}"></td>
+		</tr>	
+	</table>
+</body>	
+</html>

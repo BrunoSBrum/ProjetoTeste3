@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associados</title>
+    
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Editar Associado</h1>    
+    <a href="/">Menu</a>
+    <a href="/associados">Voltar</a>
+    <br>
+    <br>
+    <form th:action="@{/associados}" th:object="${associados}" method="POST" id="formAluno">
+      
+        <label>ID:</label> <span th:text="${associados.idAssociado}"></span>
+        <br>
+        <input type="hidden" th:value="${associados.idAssociado}" th:field="${associados.idAssociado}" name="IdAssociado" />
+      
+        <label>Nome:</label>
+        <input type="text" placeholder="Digite o nome" th:value="${associados.idAssociado}" name="nome" required/>
+        <br>  
+        <label>Partidos:</label>
+        <select th:field="${associados.partido}" required>
+            <option value="">Escolha o curso</option>
+            <option th:each="partidos : ${partidos}"
+                        th:value="${partidos.id}"
+                        th:text="${partidos.nome}">
+            </option>
+        </select>
+
+        <br>
+        <br>
+        <input type="submit" value="Salvar" />
+        <input type="reset"  value="Cancelar"/>
+    </form>
+    
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Associados</title>
+	
+	<style>
+	table, th, td {
+		border:1px solid black;
+	}
+	</style>
+	
+</head>
+
+<body>
+<h1>Vincular Associado no partido</h1>
+	<a href="/">Menu</a>
+	<br>
+	<br>
+
+	<form th:action="@{/associados/partidos}" th:object="${associado}" method="POST">
+		
+		<label>Nome</label>
+		
+		<select th:field="${associados}" >
+			<option value="">Escolha o associado</option> 
+			<option th:each="associados : ${associados}"
+						th:value="${associados.idAssociado}"
+						th:text ="${associados.nome}">
+			
+			</option>	
+		</select>
+		
+		<label>Partidos</label>
+		
+		<select th:field="${associado.partidos}" >
+			<option value="">Escolha o partido</option> 
+			<option th:each="partido : ${partido}"
+						th:value="${partido.id}"
+						th:text ="${partido.nome}">
+			</option>	
+		</select>
+		
+		<input type="submit" value="Salvar"/>	
+	</form>
+	<br>
+	<br>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Partido</th>
+		
+		
+		</tr>
+			
+		<tr th:each="associados : ${associados}" >
+			<td th:text="${associados.idAssociado}"></td>
+			<td th:text="${associados.nome}"></td>
+			<td th:text="${associados.partidos?.nome}"></td>
+		</tr>	
+	</table>
+</body>
+
+</html>

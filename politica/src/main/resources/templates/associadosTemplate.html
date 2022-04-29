@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Associados</title>
+	
+	<style>
+	table, th, td {
+		border:1px solid black;
+	}
+	</style>
+	
+</head>
+
+<body>
+<h1>Cadastro de Associados</h1>
+	<a href="/">Menu</a>
+	<br>
+	<br>
+
+	<form th:action="@{/associados}" th:object="${associado}" method="POST">
+		
+		<label>Nome</label>
+		<input type="text" placeholder="Digite o nome"  name="nome"  required/>
+		<input type="text" placeholder="Digite o cargo" name="cargo" required/>
+		<input type="text" placeholder="Digite o sexo"  name="sexo"  required/>
+		
+		<label>Partidos</label>
+		
+		<select th:field="${associado.partidos}" >
+			<option value="">Escolha o partido</option> 
+			<option th:each="partido : ${partido}"
+						th:value="${partido.id}"
+						th:text ="${partido.nome}">
+			</option>	
+		</select>
+		
+		<input type="submit" value="Salvar"/>	
+		
+	</form>
+	<br>
+	<br>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Cargo</th>
+			<th>Sexo</th>
+			<th>Partido</th>
+			<th>Detalhes</th>
+			<th>Remover</th>
+			<th>Editar</th>
+		
+		</tr>
+			
+		<tr th:each="associados : ${associados}" >
+			<td th:text="${associados.idAssociado}"></td>
+			<td th:text="${associados.nome}"></td>
+			<td th:text="${associados.cargo}"></td>
+			<td th:text="${associados.sexo}"></td> 
+			<td th:text="${associados.partidos?.nome}"></td>
+			<td> <a th:href="@{'/associados/detalhes/' + ${associados.idAssociado}}">Detalhes</a></td>
+			<td> <a th:href="@{'/associados/removerAssociado?idAssociado=' + ${associados.idAssociado}}">Remover</a></td>
+			<td> <a th:href="@{'/associados/editarAssociado?idAssociado=' + ${associados.idAssociado}}">Editar</a></td>
+		</tr>	
+	</table>
+</body>
+
+</html>
